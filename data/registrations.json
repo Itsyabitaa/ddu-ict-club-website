@@ -1,0 +1,23 @@
+[
+    {
+        "id": "1",
+        "title": "SebezX Game and Code Night Registration",
+        "location": "DDU Main Campus, Hall 3",
+        "deadline": "2025-12-18",
+        "isOpen": true
+    },
+    {
+        "id": "2",
+        "title": "Web Development Bootcamp - Cohort 1",
+        "location": "Online / Lab 4",
+        "deadline": "2025-01-10",
+        "isOpen": true
+    },
+    {
+        "id": "3",
+        "title": "Winter Hackathon",
+        "location": "TBD",
+        "deadline": "2024-11-20",
+        "isOpen": false
+    }
+]

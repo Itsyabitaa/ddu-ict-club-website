@@ -1,0 +1,41 @@
+[
+    {
+        "id": "1",
+        "name": "Abel Tesfaye",
+        "role": "President",
+        "image": "/team/abel.jpg",
+        "bio": "Leading the vision of DDU ICT Club.",
+        "socials": {
+            "github": "https://github.com",
+            "linkedin": "https://linkedin.com",
+            "twitter": "https://twitter.com"
+        }
+    },
+    {
+        "id": "2",
+        "name": "Sarah Kebede",
+        "role": "Vice President",
+        "image": "/team/sarah.jpg",
+        "bio": "Coordinating club activities and member engagement."
+    },
+    {
+        "id": "3",
+        "name": "Dawit Alemu",
+        "role": "Web Lead",
+        "image": "/team/dawit.jpg",
+        "bio": "Overseeing web projects and technical mentorship.",
+        "socials": {
+            "github": "https://github.com"
+        }
+    },
+     {
+        "id": "4",
+        "name": "Blen Eyob",
+        "role": "Project Manager",
+        "image": "/team/dawit.jpg",
+        "bio": "Overseeing web projects and technical mentorship.",
+        "socials": {
+            "github": "https://github.com"
+        }
+    }
+]

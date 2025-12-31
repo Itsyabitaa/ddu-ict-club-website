@@ -1,0 +1,11 @@
+[
+    {
+        "slug": "hello-world",
+        "title": "Welcome to DDU ICT Club Blog",
+        "excerpt": "This is our first post. Stay tuned for more updates!",
+        "content": "Full content goes here...",
+        "date": "2025-01-01",
+        "category": "Announcements",
+        "readTime": "2 min read"
+    }
+]
