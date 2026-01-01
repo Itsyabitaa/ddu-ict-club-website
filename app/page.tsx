@@ -20,11 +20,11 @@ export default async function Home() {
   return (
     <main className="flex min-h-screen flex-col bg-background text-foreground overflow-x-hidden">
       {/* Hero Section - Brutalist & Big */}
-      <section className="relative flex min-h-[0vh] flex-col justify-center border-b border-border">
+      <section className="relative flex min-h-[80vh] flex-col justify-center border-b border-border">
         {/* Background Grid Pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[24px_24px] "></div>
 
-        <div className="container relative mx-auto px-4 pt-8 pb-16 md:pb-32">
+        <div className="container relative mx-auto px-4 pt-20 pb-16 md:pb-32">
           {/* Badge */}
           <div className="mb-8 inline-flex animate-in fade-in slide-in-from-bottom-4 duration-700">
             <span className="rounded-full border border-primary px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-primary bg-background">
@@ -33,7 +33,7 @@ export default async function Home() {
           </div>
 
           {/* Huge Typography */}
-          <h1 className="max-w-5xl text-6xl font-black uppercase tracking-tighter sm:text-7xl md:text-8xl lg:text-9xl animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100 leading-[0.9]">
+          <h1 className="max-w-5xl text-5xl font-black uppercase tracking-tighter sm:text-6xl md:text-7xl lg:text-8xl animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100 leading-[0.9]">
             We Build <br />
             <span className="text-primary">The Future.</span>
           </h1>
@@ -60,7 +60,7 @@ export default async function Home() {
 
  
         {/* Marquee Effect */}
-        <div className="absolute bottom-0 w-full border-t border-border bg-background py-4 overflow-hidden">
+        <div className="absolute bottom-0 w-full border-t border-border bg-background py-3 overflow-hidden">
           <Marquee className="[--gap:2rem]" repeat={5}>
             <span className="text-sm font-bold tracking-widest text-muted-foreground opacity-50 mx-4">• INNOVATE • BUILD • DEPLOY • DISRUPT •</span>
           </Marquee>
