@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight , Terminal } from "lucide-react";
 import Marquee from "@/components/Marquee";
 
@@ -25,36 +26,54 @@ export default async function Home() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[24px_24px] "></div>
 
         <div className="container relative mx-auto px-4 pt-20 pb-16 md:pb-32">
-          {/* Badge */}
-          <div className="mb-8 inline-flex animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <span className="rounded-full border border-primary px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-primary bg-background">
-              DDU ICT Club
-            </span>
-          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            {/* Left Content */}
+            <div>
+              {/* Badge */}
+              <div className="mb-8 inline-flex animate-in fade-in slide-in-from-bottom-4 duration-700">
+                <span className="rounded-full border border-primary px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-primary bg-background">
+                  DDU ICT Club
+                </span>
+              </div>
 
-          {/* Huge Typography */}
-          <h1 className="max-w-5xl text-5xl font-black uppercase tracking-tighter sm:text-6xl md:text-7xl lg:text-8xl animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100 leading-[0.9]">
-            We Build <br />
-            <span className="text-primary">The Future.</span>
-          </h1>
+              {/* Huge Typography */}
+              <h1 className="text-5xl font-black uppercase tracking-tighter sm:text-6xl md:text-7xl lg:text-8xl animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100 leading-[0.9]">
+                We Build <br />
+                <span className="text-primary">The Future.</span>
+              </h1>
 
-          <p className="mt-8 max-w-2xl text-xl text-muted-foreground animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
-            The premier hub for innovators, hackers, and creators at Dire Dawa University.
-            We turn coffee into code and ideas into reality.
-          </p>
+              <p className="mt-8 max-w-2xl text-xl text-muted-foreground animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
+                The premier hub for innovators, hackers, and creators at Dire Dawa University.
+                We turn coffee into code and ideas into reality.
+              </p>
 
-          {/* CTAs */}
-          <div className="mt-12 flex flex-col gap-4 sm:flex-row animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300">
-            <Button asChild size="lg" className="h-14 rounded-none border-2 border-primary bg-primary text-primary-foreground hover:bg-transparent hover:text-primary text-lg font-bold px-8">
-              <Link href="/register">
-                Join the Movement <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="h-14 rounded-none border-2 px-8 text-lg font-bold">
-              <Link href="/about">
-                Explore Club
-              </Link>
-            </Button>
+              {/* CTAs */}
+              <div className="mt-12 flex flex-col gap-4 sm:flex-row animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300">
+                <Button asChild size="lg" className="h-14 rounded-none border-2 border-primary bg-primary text-primary-foreground hover:bg-transparent hover:text-primary text-lg font-bold px-8">
+                  <Link href="/register">
+                    Join the Movement <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" size="lg" className="h-14 rounded-none border-2 px-8 text-lg font-bold">
+                  <Link href="/about">
+                    Explore Club
+                  </Link>
+                </Button>
+              </div>
+            </div>
+
+            {/* Right Logo */}
+            <div className="hidden lg:flex justify-center items-center animate-in fade-in slide-in-from-right-8 duration-700 delay-400">
+              <div className="relative w-full max-w-md h-96">
+                <Image
+                  src="/assets/logo/light-logo.png"
+                  alt="DDU ICT Club Logo"
+                  fill
+                  className="object-contain dark:invert"
+                  priority
+                />
+              </div>
+            </div>
           </div>
         </div>
 
