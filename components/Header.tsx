@@ -37,14 +37,7 @@ export function Header() {
               src="/assets/logo/light-logo.png"
               alt="DDU ICT Club Logo"
               fill
-              className="object-contain dark:hidden"
-              priority
-            />
-            <Image
-              src="/assets/logo/dark-logo.png"
-              alt="DDU ICT Club Logo"
-              fill
-              className="object-contain hidden dark:block"
+              className="object-contain dark:invert"
               priority
             />
           </div>
