@@ -20,11 +20,11 @@ export default async function Home() {
   return (
     <main className="flex min-h-screen flex-col bg-background text-foreground overflow-x-hidden">
       {/* Hero Section - Brutalist & Big */}
-      <section className="relative flex min-h-[90vh] flex-col justify-center border-b border-border">
+      <section className="relative flex min-h-[0vh] flex-col justify-center border-b border-border">
         {/* Background Grid Pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[24px_24px] "></div>
 
-        <div className="container relative mx-auto px-4 py-20 md:py-32">
+        <div className="container relative mx-auto px-4 pt-8 pb-16 md:pb-32">
           {/* Badge */}
           <div className="mb-8 inline-flex animate-in fade-in slide-in-from-bottom-4 duration-700">
             <span className="rounded-full border border-primary px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-primary bg-background">
