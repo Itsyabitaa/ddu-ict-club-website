@@ -1,12 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight , Terminal } from "lucide-react";
+import { ArrowRight, Terminal, Code, Users, Trophy, GraduationCap } from "lucide-react";
 import Marquee from "@/components/Marquee";
 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { EventCard } from "@/components/EventCard";
- 
+
 import { TestimonialCard } from "@/components/TestimonialCard";
 import eventsData from "@/data/events.json";
 import { EventItem } from "@/lib/types";
@@ -77,7 +77,7 @@ export default async function Home() {
           </div>
         </div>
 
- 
+
         {/* Marquee Effect */}
         <div className="absolute bottom-0 w-full border-t border-border bg-background py-3 overflow-hidden">
           <Marquee className="[--gap:2rem]" repeat={5}>
@@ -86,53 +86,137 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Bento Grid Section - Stats & About */}
-      <section className="border-b border-border bg-background py-24">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-1 md:gap-0 bg-border border border-border">
-            {/* Mega Item Cell (Span 2) */}
-            <div className="md:col-span-2   bg-background p-8 md:p-12 relative overflow-hidden group min-h-[400px] flex flex-col justify-end">
-              <div className="absolute top-6 left-6 z-10">
-                <Badge variant="outline" className="rounded-full bg-background uppercase tracking-widest border-primary">Featured</Badge>
+      {/* Stats Banner Section */}
+      <section className="bg-background text-foreground py-16 border-b border-border relative overflow-hidden">
+        {/* Gradient Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5"></div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+            <div className="group relative bg-background border-2 border-border hover:border-primary p-6 md:p-8 rounded-lg transition-all duration-300 hover:shadow-xl hover:shadow-primary/20 hover:-translate-y-1">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+              <div className="relative space-y-2 text-center">
+                <div className="text-4xl md:text-5xl font-black tracking-tighter text-primary group-hover:scale-110 transition-transform duration-300 inline-block">20+</div>
+                <div className="text-xs md:text-sm font-bold uppercase tracking-wider text-muted-foreground">Active Members</div>
               </div>
-              {megaItem ? (
-                <div className="relative z-10 max-w-xl">
-                  <h2 className="text-4xl md:text-5xl font-black tracking-tighter mb-4 group-hover:text-primary transition-colors duration-300">
-                    {megaItem.title}
-                  </h2>
-                  <p className="text-lg text-muted-foreground mb-6 line-clamp-2">
-                    {megaItem.type === 'event' ? (megaItem as EventItem).description : (megaItem as any).excerpt}
-                  </p>
-                  <Button asChild variant="link" className="p-0 text-foreground text-lg group-hover:translate-x-2 transition-transform h-auto">
-                    <Link href={megaItem.type === 'event' ? `/events/${(megaItem as EventItem).id}` : `/blog/${(megaItem as any).slug}`}>
-                      Read Full Story <ArrowRight className="ml-2 h-5 w-5" />
-                    </Link>
-                  </Button>
-                </div>
-              ) : (
-                <div className="relative z-10 flex flex-col justify-end h-full">
-                  <Terminal className="h-24 w-24 text-muted mb-4 opacity-20" />
-                  <h2 className="text-4xl font-bold tracking-tighter mb-2">DDU ICT Club</h2>
-                  <p className="text-muted-foreground">Shaping the tech landscape of tomorrow.</p>
-                </div>
-              )}
             </div>
 
-            {/* Stats Cell */}
-            <div className="bg-background p-8 flex flex-col justify-center space-y-8">
-              <div className="space-y-2">
-                <span className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Members</span>
-                <div className="text-5xl font-black tracking-tighter">500+</div>
+            <div className="group relative bg-background border-2 border-border hover:border-primary p-6 md:p-8 rounded-lg transition-all duration-300 hover:shadow-xl hover:shadow-primary/20 hover:-translate-y-1">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+              <div className="relative space-y-2 text-center">
+                <div className="text-4xl md:text-5xl font-black tracking-tighter text-primary group-hover:scale-110 transition-transform duration-300 inline-block">20+</div>
+                <div className="text-xs md:text-sm font-bold uppercase tracking-wider text-muted-foreground">Mentors</div>
               </div>
-              <div className="h-px bg-border w-full" />
-              <div className="space-y-2">
-                <span className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Events</span>
-                <div className="text-5xl font-black tracking-tighter">20+</div>
+            </div>
+
+            <div className="group relative bg-background border-2 border-border hover:border-primary p-6 md:p-8 rounded-lg transition-all duration-300 hover:shadow-xl hover:shadow-primary/20 hover:-translate-y-1">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+              <div className="relative space-y-2 text-center">
+                <div className="text-4xl md:text-5xl font-black tracking-tighter text-primary group-hover:scale-110 transition-transform duration-300 inline-block">120+</div>
+                <div className="text-xs md:text-sm font-bold uppercase tracking-wider text-muted-foreground">Web Dev Students</div>
               </div>
-              <div className="h-px bg-border w-full" />
-              <div className="space-y-2">
-                <span className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Projects</span>
-                <div className="text-5xl font-black tracking-tighter">15</div>
+            </div>
+
+            <div className="group relative bg-background border-2 border-border hover:border-primary p-6 md:p-8 rounded-lg transition-all duration-300 hover:shadow-xl hover:shadow-primary/20 hover:-translate-y-1">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+              <div className="relative space-y-2 text-center">
+                <div className="text-4xl md:text-5xl font-black tracking-tighter text-primary group-hover:scale-110 transition-transform duration-300 inline-block">160+</div>
+                <div className="text-xs md:text-sm font-bold uppercase tracking-wider text-muted-foreground">Total Community</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      {/* About DDU ICT Club Section */}
+      <section className="py-24 bg-background border-b border-border">
+        <div className="container mx-auto px-4">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-4">
+              About DDU ICT Club
+            </h2>
+            <div className="h-1 w-24 bg-primary mx-auto mb-6"></div>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              A vibrant community of technology enthusiasts
+            </p>
+          </div>
+
+          {/* Content Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            {/* Left: Who We Are */}
+            <div className="space-y-6">
+              <h3 className="text-3xl font-bold tracking-tight">Who We Are</h3>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                DDU ICT Club is a dynamic community of students passionate about Information and Communication Technology. We foster innovation, learning, and collaboration among tech enthusiasts at DDU.
+              </p>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Our mission is to provide a platform where students can learn, grow, and excel in the field of ICT through workshops, hackathons, coding competitions, and collaborative projects.
+              </p>
+              <Button asChild size="lg" className="rounded-none border-2 border-primary bg-background text-foreground hover:bg-primary hover:text-primary-foreground mt-4">
+                <Link href="/about">
+                  Learn More
+                </Link>
+              </Button>
+            </div>
+
+            {/* Right: Feature Cards Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {/* Coding Workshops */}
+              <div className="group relative bg-background border-2 border-border hover:border-primary p-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                <div className="relative space-y-3">
+                  <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Code className="h-6 w-6 text-primary" />
+                  </div>
+                  <h4 className="text-lg font-bold">Coding Workshops</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Regular hands-on sessions on various programming languages and frameworks.
+                  </p>
+                </div>
+              </div>
+
+              {/* Community Events */}
+              <div className="group relative bg-background border-2 border-border hover:border-primary p-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                <div className="relative space-y-3">
+                  <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Users className="h-6 w-6 text-primary" />
+                  </div>
+                  <h4 className="text-lg font-bold">Community Events</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Networking opportunities and collaborative projects with fellow members.
+                  </p>
+                </div>
+              </div>
+
+              {/* Competitions */}
+              <div className="group relative bg-background border-2 border-border hover:border-primary p-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                <div className="relative space-y-3">
+                  <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Trophy className="h-6 w-6 text-primary" />
+                  </div>
+                  <h4 className="text-lg font-bold">Competitions</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Participate in hackathons and coding challenges to test your skills.
+                  </p>
+                </div>
+              </div>
+
+              {/* Learning Resources */}
+              <div className="group relative bg-background border-2 border-border hover:border-primary p-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                <div className="relative space-y-3">
+                  <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <GraduationCap className="h-6 w-6 text-primary" />
+                  </div>
+                  <h4 className="text-lg font-bold">Learning Resources</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Access to curated learning materials and mentorship programs.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
