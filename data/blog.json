@@ -6,7 +6,8 @@
         "content": "Full second post content goes here...",
         "date": "2025-01-02",
         "category": "Career",
-        "readTime": "3 min read"
+        "readTime": "3 min read",
+        "isMega": false
     },
     {
         "slug": "hello-world",
@@ -15,7 +16,8 @@
         "content": "Full content goes here...",
         "date": "2025-01-01",
         "category": "Announcements",
-        "readTime": "2 min read"
+        "readTime": "2 min read",
+        "isMega": false
     },
     {
         "slug": "hello-world-3",
@@ -24,6 +26,7 @@
         "content": "Full third post content goes here...",
         "date": "2025-01-02",
         "category": "Tutorials",
-        "readTime": "3 min read"
+        "readTime": "3 min read",
+        "isMega": false
     }
 ]
