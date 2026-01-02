@@ -41,17 +41,29 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
 
-  /* animation */
+  /* animations */
   --animate-marquee: marquee 25s linear infinite;
+  --animate-marquee-reverse: marquee-reverse 25s linear infinite;
+}
 
-  @keyframes marquee {
-    from {
-      transform: translateX(0);
-    }
+/* ----------------------------------------
+   Keyframe Animations
+----------------------------------------- */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
 
-    to {
-      transform: translateX(-100%);
-    }
+@keyframes marquee-reverse {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
   }
 }
 

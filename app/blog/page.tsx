@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowRight, Search } from "lucide-react";
+import { useState, useMemo } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,9 +12,25 @@ import { BlogPost } from "@/lib/types";
 
 export default function BlogPage() {
     const posts = blogData as BlogPost[];
+    const [selectedCategory, setSelectedCategory] = useState<string>("All");
+    
+    // Extract unique categories from blog posts
+    const categories = useMemo(() => {
+        const uniqueCategories = Array.from(new Set(posts.map(post => post.category)));
+        return ["All", ...uniqueCategories];
+    }, [posts]);
+    
+    // Filter posts by selected category
+    const filteredPosts = useMemo(() => {
+        if (selectedCategory === "All") {
+            return posts;
+        }
+        return posts.filter(post => post.category === selectedCategory);
+    }, [posts, selectedCategory]);
+    
     // Assume first post is featured (or use logic)
-    const featuredPost = posts[0];
-    const otherPosts = posts.slice(1);
+    const featuredPost = filteredPosts[0];
+    const otherPosts = filteredPosts.slice(1);
 
     return (
         <main className="flex min-h-screen flex-col bg-background text-foreground">
@@ -56,25 +75,32 @@ export default function BlogPage() {
                     </div>
                 )}
 
-                {/* Categories (Static for now) */}
+                {/* Categories */}
                 <div className="flex flex-wrap gap-2 mb-12">
-                    {["All", "Tutorials", "Events", "Career", "Tech Talks"].map((cat) => (
-                        <Button key={cat} variant={cat === "All" ? "default" : "outline"} className="rounded-none border-border text-xs uppercase tracking-wider h-8">
+                    {categories.map((cat) => (
+                        <Button 
+                            key={cat} 
+                            variant={cat === selectedCategory ? "default" : "outline"} 
+                            className="rounded-none border-border text-xs uppercase tracking-wider h-8"
+                            onClick={() => setSelectedCategory(cat)}
+                        >
                             {cat}
                         </Button>
                     ))}
                 </div>
 
                 {/* Post Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {otherPosts.map((post) => (
-                        <PostCard key={post.slug} post={post} />
-                    ))}
-                    {/* Duplicate featured post if we don't have enough data to fill grid for demo */}
-                    {otherPosts.length === 0 && posts.length > 0 && (
-                        posts.map(p => <PostCard key={`${p.slug}-dup`} post={p} />)
-                    )}
-                </div>
+                {filteredPosts.length === 0 ? (
+                    <div className="text-center py-12">
+                        <p className="text-lg text-muted-foreground">No posts found in this category.</p>
+                    </div>
+                ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {otherPosts.map((post) => (
+                            <PostCard key={post.slug} post={post} />
+                        ))}
+                    </div>
+                )}
             </section>
         </main>
     );

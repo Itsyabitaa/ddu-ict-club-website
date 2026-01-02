@@ -1,0 +1,51 @@
+[
+    {
+        "id": "1",
+        "quote": "The DDU ICT Club changed my life. I went from knowing nothing to building full-stack apps.",
+        "author": "Abebe K.",
+        "role": "Software Engineering Student"
+    },
+    {
+        "id": "2",
+        "quote": "A place where innovation meets passion. The mentorship here is unmatched.",
+        "author": "Sara M.",
+        "role": "Club Vice President"
+    },
+    {
+        "id": "3",
+        "quote": "Best tech community at DDU!",
+        "author": "Dawit Abdisa",
+        "role": "3rd Year Student"
+    },
+    {
+        "id": "4",
+        "quote": "Being part of this club has opened so many doors for my career. The networking opportunities are incredible and I've made lifelong friends.",
+        "author": "Meron T.",
+        "role": "Computer Science Major"
+    },
+    {
+        "id": "5",
+        "quote": "I've learned more practical skills here than in any classroom. The workshops are top-notch!",
+        "author": "Yohannes B.",
+        "role": "4th Year Student"
+    },
+    {
+        "id": "6",
+        "quote": "Great community and amazing mentors. Highly recommended for anyone interested in tech.",
+        "author": "Hanna W.",
+        "role": "Developer"
+    },
+    {
+        "id": "7",
+        "quote": "The weekly bootcamps are incredibly valuable. I've gained skills that directly translate to real-world projects.",
+        "author": "Daniel K.",
+        "role": "Web Developer"
+    },
+    {
+        "id": "8",
+        "quote": "An incredible learning environment!",
+        "author": "Bethelhem S.",
+        "role": "CS Student"
+    }
+]
+

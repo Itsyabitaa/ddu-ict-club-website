@@ -21,7 +21,7 @@ export default function Marquee({
         <div
             {...props}
             className={cn(
-                "group flex overflow-hidden p-2 [--gap:1rem] gap-(--gap)",
+                "group flex overflow-hidden p-2 [--gap:1rem]",
                 className
             )}
         >
@@ -31,8 +31,8 @@ export default function Marquee({
                     <div
                         key={i}
                         className={cn(
-                            "flex shrink-0 justify-around gap-(--gap) animate-marquee flex-row",
-                            reverse && "mr-[calc(var(--gap)*-1)] flex-row-reverse",
+                            "flex shrink-0 justify-around [gap:var(--gap)]",
+                            reverse ? "animate-marquee-reverse" : "animate-marquee",
                             pauseOnHover && "group-hover:[animation-play-state:paused]"
                         )}
                     >

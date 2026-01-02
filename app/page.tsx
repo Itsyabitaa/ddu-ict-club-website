@@ -7,9 +7,10 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { EventCard } from "@/components/EventCard";
 
-import { TestimonialCard } from "@/components/TestimonialCard";
+import { TestimonialSlider } from "@/components/TestimonialSlider";
 import eventsData from "@/data/events.json";
-import { EventItem } from "@/lib/types";
+import testimonialsData from "@/data/testimonials.json";
+import { EventItem, Testimonial } from "@/lib/types";
 import { getMegaItem } from "@/lib/mega";
 
 export default async function Home() {
@@ -17,6 +18,7 @@ export default async function Home() {
   const upcomingEvents = (eventsData as EventItem[])
     .filter((e) => e.status === "upcoming" || e.status === "ongoing")
     .slice(0, 3);
+  const testimonials = testimonialsData as Testimonial[];
 
   return (
     <main className="flex min-h-screen flex-col bg-background text-foreground overflow-x-hidden">
@@ -93,32 +95,32 @@ export default async function Home() {
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-            <div className="group relative bg-background border-2 border-border hover:border-primary p-6 md:p-8 rounded-lg transition-all duration-300 hover:shadow-xl hover:shadow-primary/20 hover:-translate-y-1">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+            <div className="group relative bg-background border-2 border-border hover:border-primary p-6 md:p-8 rounded-2xl transition-all duration-300 hover:shadow-xl hover:shadow-primary/20 hover:-translate-y-1">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
               <div className="relative space-y-2 text-center">
                 <div className="text-4xl md:text-5xl font-black tracking-tighter text-primary group-hover:scale-110 transition-transform duration-300 inline-block">20+</div>
                 <div className="text-xs md:text-sm font-bold uppercase tracking-wider text-muted-foreground">Active Members</div>
               </div>
             </div>
 
-            <div className="group relative bg-background border-2 border-border hover:border-primary p-6 md:p-8 rounded-lg transition-all duration-300 hover:shadow-xl hover:shadow-primary/20 hover:-translate-y-1">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+            <div className="group relative bg-background border-2 border-border hover:border-primary p-6 md:p-8 rounded-2xl transition-all duration-300 hover:shadow-xl hover:shadow-primary/20 hover:-translate-y-1">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
               <div className="relative space-y-2 text-center">
                 <div className="text-4xl md:text-5xl font-black tracking-tighter text-primary group-hover:scale-110 transition-transform duration-300 inline-block">20+</div>
                 <div className="text-xs md:text-sm font-bold uppercase tracking-wider text-muted-foreground">Mentors</div>
               </div>
             </div>
 
-            <div className="group relative bg-background border-2 border-border hover:border-primary p-6 md:p-8 rounded-lg transition-all duration-300 hover:shadow-xl hover:shadow-primary/20 hover:-translate-y-1">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+            <div className="group relative bg-background border-2 border-border hover:border-primary p-6 md:p-8 rounded-2xl transition-all duration-300 hover:shadow-xl hover:shadow-primary/20 hover:-translate-y-1">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
               <div className="relative space-y-2 text-center">
                 <div className="text-4xl md:text-5xl font-black tracking-tighter text-primary group-hover:scale-110 transition-transform duration-300 inline-block">120+</div>
                 <div className="text-xs md:text-sm font-bold uppercase tracking-wider text-muted-foreground">Web Dev Students</div>
               </div>
             </div>
 
-            <div className="group relative bg-background border-2 border-border hover:border-primary p-6 md:p-8 rounded-lg transition-all duration-300 hover:shadow-xl hover:shadow-primary/20 hover:-translate-y-1">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+            <div className="group relative bg-background border-2 border-border hover:border-primary p-6 md:p-8 rounded-2xl transition-all duration-300 hover:shadow-xl hover:shadow-primary/20 hover:-translate-y-1">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
               <div className="relative space-y-2 text-center">
                 <div className="text-4xl md:text-5xl font-black tracking-tighter text-primary group-hover:scale-110 transition-transform duration-300 inline-block">160+</div>
                 <div className="text-xs md:text-sm font-bold uppercase tracking-wider text-muted-foreground">Total Community</div>
@@ -164,10 +166,10 @@ export default async function Home() {
             {/* Right: Feature Cards Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {/* Coding Workshops */}
-              <div className="group relative bg-background border-2 border-border hover:border-primary p-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+              <div className="group relative bg-background border-2 border-border hover:border-primary p-6 rounded-2xl transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
                 <div className="relative space-y-3">
-                  <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                     <Code className="h-6 w-6 text-primary" />
                   </div>
                   <h4 className="text-lg font-bold">Coding Workshops</h4>
@@ -178,10 +180,10 @@ export default async function Home() {
               </div>
 
               {/* Community Events */}
-              <div className="group relative bg-background border-2 border-border hover:border-primary p-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+              <div className="group relative bg-background border-2 border-border hover:border-primary p-6 rounded-2xl transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
                 <div className="relative space-y-3">
-                  <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                     <Users className="h-6 w-6 text-primary" />
                   </div>
                   <h4 className="text-lg font-bold">Community Events</h4>
@@ -192,10 +194,10 @@ export default async function Home() {
               </div>
 
               {/* Competitions */}
-              <div className="group relative bg-background border-2 border-border hover:border-primary p-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+              <div className="group relative bg-background border-2 border-border hover:border-primary p-6 rounded-2xl transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
                 <div className="relative space-y-3">
-                  <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                     <Trophy className="h-6 w-6 text-primary" />
                   </div>
                   <h4 className="text-lg font-bold">Competitions</h4>
@@ -206,10 +208,10 @@ export default async function Home() {
               </div>
 
               {/* Learning Resources */}
-              <div className="group relative bg-background border-2 border-border hover:border-primary p-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+              <div className="group relative bg-background border-2 border-border hover:border-primary p-6 rounded-2xl transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
                 <div className="relative space-y-3">
-                  <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                     <GraduationCap className="h-6 w-6 text-primary" />
                   </div>
                   <h4 className="text-lg font-bold">Learning Resources</h4>
@@ -224,61 +226,86 @@ export default async function Home() {
       </section>
 
       {/* Upcoming Events Section */}
-      <section className="py-24 bg-background">
+      <section className="py-24 bg-background border-b border-border">
         <div className="container mx-auto px-4">
-          <div className="flex items-end justify-between mb-12">
-            <div>
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Upcoming</h2>
-              <p className="text-muted-foreground mt-2">Don't miss out on the action.</p>
-            </div>
-            <Button asChild variant="ghost" className="hidden sm:flex">
-              <Link href="/events" className="group">
-                View All Events <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </Button>
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-4">
+              Upcoming Events
+            </h2>
+            <div className="h-1 w-24 bg-primary mx-auto mb-6"></div>
+            <p className="text-xl text-muted-foreground">
+              Join us for exciting tech events and workshops
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Events Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto mb-12">
             {upcomingEvents.map((event, i) => (
-              <div key={event.id} className={`animate-in fade-in slide-in-from-bottom-8 duration-700 delay-${i * 100}`}>
-                <EventCard event={event} />
+              <div key={event.id} className="group relative bg-background border-2 border-border hover:border-primary p-8 rounded-2xl transition-all duration-300 hover:shadow-xl hover:shadow-primary/10">
+                <div className="space-y-4">
+                  {/* Date Badge */}
+                  <div className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                    {event.dateLabel}
+                  </div>
+                  
+                  {/* Event Title */}
+                  <h3 className="text-2xl font-bold tracking-tight group-hover:text-primary transition-colors">
+                    {event.title}
+                  </h3>
+                  
+                  {/* Event Description */}
+                  <p className="text-muted-foreground leading-relaxed">
+                    {event.description}
+                  </p>
+                  
+                  {/* Bottom Section */}
+                  <div className="flex items-center justify-between pt-4">
+                    {/* Time/Recurrence Badge */}
+                    {(event.timeLabel || event.recurrence) && (
+                      <div className="flex items-center gap-2 px-3 py-1.5 bg-background border border-border rounded-full text-xs font-medium">
+                        <span className="h-2 w-2 rounded-full bg-primary"></span>
+                        {event.timeLabel || (event.recurrence === 'weekly' ? 'Weekly' : 'Bi-weekly')}
+                      </div>
+                    )}
+                    
+                    {/* Register Button */}
+                    <Button asChild size="sm" className="rounded-full bg-background hover:bg-primary text-foreground hover:text-primary-foreground border-2 border-border hover:border-primary font-bold px-6">
+                      <Link href={`/events/${event.id}`}>
+                        {event.status === 'ongoing' ? 'Join' : 'Register'}
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
 
-          <Button asChild variant="outline" className="w-full mt-8 sm:hidden rounded-none border-2">
-            <Link href="/events">
-              View All Events
-            </Link>
-          </Button>
+          {/* View All Events Button */}
+          <div className="text-center">
+            <Button asChild size="lg" variant="outline" className="rounded-full border-2 border-border hover:border-primary px-8 font-bold">
+              <Link href="/events">
+                View All Events
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
 
-      {/* Testimonials Marquee / Grid */}
-      <section className="py-24 border-t border-border bg-dot-pattern">
-        <div className="container mx-auto px-4 text-center mb-16">
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl mb-4">Community Voices</h2>
+      {/* Testimonials Section */}
+      <section className="relative py-24 border-t border-border bg-background">
+        <div className="container relative z-10 mx-auto px-4 text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+            Community Voices
+          </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Hear from the students, developers, and leaders who make our community thrive.
           </p>
         </div>
 
-        <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <TestimonialCard
-            quote="The DDU ICT Club changed my life. I went from knowing nothing to building full-stack apps."
-            author="Abebe K."
-            role="Software Engineering Student"
-          />
-          <TestimonialCard
-            quote="A place where innovation meets passion. The mentorship here is unmatched."
-            author="Sara M."
-            role="Club Vice President"
-          />
-          <TestimonialCard
-            quote="The hackathons are intense but incredibly rewarding. Best community on campus!"
-            author="Dawit T."
-            role="3rd Year CS"
-          />
+        {/* Single Testimonial Slider */}
+        <div className="container mx-auto px-4 pb-12">
+          <TestimonialSlider testimonials={testimonials} />
         </div>
       </section>
     </main>
