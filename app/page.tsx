@@ -64,17 +64,61 @@ export default async function Home() {
               </div>
             </div>
 
-            {/* Right Logo */}
+            {/* Right Side - Mega Event/Blog or Logo */}
             <div className="hidden lg:flex justify-center items-center animate-in fade-in slide-in-from-right-8 duration-700 delay-400">
-              <div className="relative w-full max-w-md h-96">
-                <Image
-                  src="/assets/logo/light-logo.png"
-                  alt="DDU ICT Club Logo"
-                  fill
-                  className="object-contain dark:invert"
-                  priority
-                />
-              </div>
+              {megaItem ? (
+                // Mega Event/Blog Card
+                <div className="relative w-full max-w-md">
+                  <div className="group relative bg-background border-2 border-border hover:border-primary p-8 rounded-2xl transition-all duration-300 hover:shadow-2xl hover:shadow-primary/20">
+                    {/* Gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+                    
+                    {/* Badge */}
+                    <div className="relative mb-4">
+                      <span className="inline-block px-3 py-1 bg-primary text-primary-foreground text-xs font-bold uppercase tracking-wider rounded-full">
+                        {megaItem.type === 'event' ? '🎉 Mega Event' : '📝 Featured Post'}
+                      </span>
+                    </div>
+                    
+                    {/* Content */}
+                    <div className="relative space-y-4">
+                      <h3 className="text-2xl font-bold tracking-tight group-hover:text-primary transition-colors">
+                        {megaItem.title}
+                      </h3>
+                      
+                      <p className="text-muted-foreground leading-relaxed line-clamp-3">
+                        {megaItem.type === 'event' 
+                          ? (megaItem as any).description 
+                          : (megaItem as any).excerpt}
+                      </p>
+                      
+                      {megaItem.type === 'event' && (megaItem as any).dateLabel && (
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <span>📅</span>
+                          <span>{(megaItem as any).dateLabel}</span>
+                        </div>
+                      )}
+                      
+                      <Button asChild className="w-full mt-4 rounded-full border-2 border-primary hover:bg-primary hover:text-primary-foreground font-bold">
+                        <Link href={megaItem.type === 'event' ? `/events/${(megaItem as any).id}` : `/blog/${(megaItem as any).slug}`}>
+                          Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                // Default Logo
+                <div className="relative w-full max-w-md h-96">
+                  <Image
+                    src="/assets/logo/light-logo.png"
+                    alt="DDU ICT Club Logo"
+                    fill
+                    className="object-contain dark:invert"
+                    priority
+                  />
+                </div>
+              )}
             </div>
           </div>
         </div>
