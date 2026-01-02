@@ -6,7 +6,7 @@
         "dateLabel": "December 19, 2025",
         "timeLabel": "6:00 PM (12:00 LT)",
         "status": "upcoming",
-        "isMega": true,
+        "isMega": false,
         "heroImage": "/events/sebezx.jpg"
     },
     {
@@ -15,6 +15,7 @@
         "description": "Weekly bootcamp sessions for web development enthusiasts.",
         "dateLabel": "Every Friday",
         "status": "ongoing",
+        "isMega": false,
         "recurrence": "weekly"
     },
     {
@@ -23,6 +24,7 @@
         "description": "Bi-weekly tech talks and discussions.",
         "dateLabel": "Every Monday (Bi-weekly)",
         "status": "ongoing",
+        "isMega": false,
         "recurrence": "biweekly"
     },
     {
@@ -30,6 +32,7 @@
         "title": "Club Launch Celebration",
         "description": "The grand opening ceremony of the DDU ICT Club.",
         "dateLabel": "End of Meskrm",
-        "status": "completed"
+        "status": "completed",
+        "isMega": false
     }
 ]
