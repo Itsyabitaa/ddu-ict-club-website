@@ -104,8 +104,14 @@ export default function BlogPage() {
         <section className="stack-section z-[30] shadow-[0_-20px_50px_rgba(0,0,0,0.5)] bg-background/95">
             <div className="container mx-auto px-4 py-20 overflow-y-auto max-h-screen custom-scrollbar">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                    {posts.map((post) => (
+                    {otherPosts.map((post) => (
                         <div key={post.slug} className="transition-all duration-500 hover:-translate-y-2">
+                            <PostCard post={post} />
+                        </div>
+                    ))}
+                    {/* Visual duplication for better stacking effect demo (without featured post) */}
+                    {otherPosts.map((post) => (
+                        <div key={`${post.slug}-dup`} className="transition-all duration-500 hover:-translate-y-2">
                             <PostCard post={post} />
                         </div>
                     ))}
