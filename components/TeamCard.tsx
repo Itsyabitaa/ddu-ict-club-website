@@ -1,67 +1,159 @@
+"use client";
+
 import Link from "next/link";
 import { Github, Linkedin, Twitter } from "lucide-react";
-
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card";
 import { TeamMember } from "@/lib/types";
 
 interface TeamCardProps {
     member: TeamMember;
+    index?: number;
 }
 
-export function TeamCard({ member }: TeamCardProps) {
+export function TeamCard({ member, index = 0 }: TeamCardProps) {
+    const initial = member.name.charAt(0).toUpperCase();
+
+    const socials = [
+        { href: member.socials?.github, Icon: Github, label: "GitHub" },
+        { href: member.socials?.linkedin, Icon: Linkedin, label: "LinkedIn" },
+        { href: member.socials?.twitter, Icon: Twitter, label: "Twitter" },
+    ].filter((s) => !!s.href);
+
     return (
-        <Card className="group h-full rounded-none border-border bg-background transition-all duration-500 hover:-translate-y-1 hover:border-primary hover:shadow-[8px_8px_0px_0px_hsl(var(--primary))]">
-            <CardHeader className="p-0">
-                <div className="relative aspect-square w-full overflow-hidden border-b border-border group-hover:border-primary transition-colors">
-                    {/* Placeholder / Image Logic */}
-                    <div className="absolute inset-0 flex items-center justify-center bg-muted text-muted-foreground group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-500">
-                        <span className="text-6xl font-black uppercase select-none opacity-50 group-hover:opacity-100 transition-opacity">
-                            {member.name.charAt(0)}
+        <article className="
+            group relative flex flex-col h-full
+            bg-background border border-border
+            overflow-hidden
+            transition-all duration-500 ease-out
+            hover:-translate-y-2
+            hover:border-primary
+            hover:shadow-[8px_8px_0px_0px_hsl(var(--primary))]
+        ">
+
+            {/* ── Avatar area ────────────────────────────────── */}
+            <div className="relative aspect-[4/3] w-full overflow-hidden bg-muted">
+
+                {/* diagonal stripe texture (theme colors only) */}
+                <div
+                    className="absolute inset-0 opacity-[0.06] group-hover:opacity-[0.12] transition-opacity duration-500"
+                    style={{
+                        backgroundImage:
+                            "repeating-linear-gradient(45deg, hsl(var(--foreground)) 0px, hsl(var(--foreground)) 1px, transparent 1px, transparent 12px)",
+                    }}
+                />
+
+                {/* ghost watermark letter */}
+                <span className="
+                    absolute inset-0 flex items-end justify-end
+                    pr-4 pb-2
+                    text-[9rem] font-black leading-none select-none
+                    text-foreground/5 group-hover:text-foreground/10
+                    transition-colors duration-500
+                ">
+                    {initial}
+                </span>
+
+                {/* avatar circle */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="
+                        relative
+                        w-24 h-24
+                        border-2 border-border
+                        group-hover:border-primary
+                        bg-background
+                        flex items-center justify-center
+                        transition-all duration-500
+                        group-hover:scale-110
+                        group-hover:shadow-[4px_4px_0_hsl(var(--primary))]
+                    ">
+                        <span className="text-4xl font-black tracking-tight text-foreground select-none group-hover:text-primary transition-colors duration-300">
+                            {initial}
                         </span>
+
+                        {/* corner tick mark */}
+                        <span className="
+                            absolute -top-2 -right-2 w-4 h-4
+                            bg-primary
+                            opacity-0 group-hover:opacity-100
+                            transition-opacity duration-300 delay-100
+                        "/>
                     </div>
-                    {/* If we had real images, they would go here with mix-blend-mode effects */}
                 </div>
-            </CardHeader>
-            <CardContent className="space-y-2 p-6">
-                <CardTitle className="text-2xl font-bold leading-none uppercase tracking-tight group-hover:text-primary transition-colors">
+
+                {/* slide-up role badge */}
+                <div className="
+                    absolute bottom-0 left-0 right-0
+                    px-5 py-2.5
+                    bg-primary text-primary-foreground
+                    translate-y-full group-hover:translate-y-0
+                    transition-transform duration-300 ease-out
+                    flex items-center justify-between
+                ">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.22em]">
+                        {member.role}
+                    </span>
+                    <span className="text-[10px] font-mono opacity-60">
+                        #{String(index + 1).padStart(2, "0")}
+                    </span>
+                </div>
+            </div>
+
+            {/* ── Body ───────────────────────────────────────── */}
+            <div className="flex flex-col flex-1 p-6 gap-0">
+
+                {/* accent bar that grows on hover */}
+                <div className="h-[2px] w-8 bg-primary mb-5 group-hover:w-full transition-all duration-500 ease-out" />
+
+                {/* name */}
+                <h3 className="text-xl font-black uppercase tracking-tight leading-tight mb-1 group-hover:text-primary transition-colors duration-300">
                     {member.name}
-                </CardTitle>
-                <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground group-hover:text-foreground transition-colors">
+                </h3>
+
+                {/* role (always visible, smaller) */}
+                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground mb-4">
                     {member.role}
                 </p>
+
+                {/* bio */}
                 {member.bio && (
-                    <CardDescription className="line-clamp-3 text-muted-foreground group-hover:text-foreground/80 transition-colors pt-2">
+                    <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3 flex-1 group-hover:text-foreground/70 transition-colors duration-300">
                         {member.bio}
-                    </CardDescription>
+                    </p>
                 )}
-            </CardContent>
-            <CardFooter className="gap-4 p-6 pt-0">
-                {member.socials?.github && (
-                    <Link href={member.socials.github} target="_blank" className="text-muted-foreground hover:text-primary transition-colors hover:scale-110 transform">
-                        <Github className="h-5 w-5" />
-                        <span className="sr-only">GitHub</span>
-                    </Link>
+
+                {/* ── Socials ───────────────────────────────── */}
+                {socials.length > 0 && (
+                    <div className="flex items-center gap-0 mt-5 border-t border-border pt-4">
+                        {socials.map(({ href, Icon, label }) => (
+                            <Link
+                                key={label}
+                                href={href!}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={label}
+                                className="
+                                    w-9 h-9 flex items-center justify-center
+                                    text-muted-foreground
+                                    border border-transparent
+                                    hover:border-primary hover:text-primary
+                                    hover:bg-primary/5
+                                    transition-all duration-200
+                                    mr-1
+                                "
+                            >
+                                <Icon className="h-4 w-4" />
+                            </Link>
+                        ))}
+
+                        {/* push a subtle arrow to the far right */}
+                        <span className="ml-auto text-muted-foreground/30 text-xs font-mono select-none group-hover:text-primary/50 transition-colors">
+                            ↗
+                        </span>
+                    </div>
                 )}
-                {member.socials?.linkedin && (
-                    <Link href={member.socials.linkedin} target="_blank" className="text-muted-foreground hover:text-primary transition-colors hover:scale-110 transform">
-                        <Linkedin className="h-5 w-5" />
-                        <span className="sr-only">LinkedIn</span>
-                    </Link>
-                )}
-                {member.socials?.twitter && (
-                    <Link href={member.socials.twitter} target="_blank" className="text-muted-foreground hover:text-primary transition-colors hover:scale-110 transform">
-                        <Twitter className="h-5 w-5" />
-                        <span className="sr-only">Twitter</span>
-                    </Link>
-                )}
-            </CardFooter>
-        </Card>
+            </div>
+
+            {/* ── Bottom border accent ───────────────────────── */}
+            <div className="h-0 group-hover:h-1 bg-primary transition-all duration-300 ease-out" />
+        </article>
     );
 }
