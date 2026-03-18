@@ -21,7 +21,7 @@ export function EventCard({ event }: EventCardProps) {
     const isCompleted = event.status === 'completed';
 
     return (
-        <Card className={`group h-full rounded-none border-border transition-all duration-500 hover:border-primary hover:shadow-[4px_4px_0px_0px_hsl(var(--primary))] bg-background ${isCompleted ? 'opacity-70 grayscale' : ''}`}>
+        <Card className={`group h-full rounded-none border-2 border-white/10 glass-premium card-glow-premium transition-all duration-700 hover:border-foreground/50 hover:glow-md ${isCompleted ? 'opacity-70 grayscale' : ''}`}>
             <CardHeader>
                 <div className="flex justify-between items-start mb-2">
                     <Badge variant={isCompleted ? "secondary" : "default"} className="rounded-none uppercase tracking-wider text-xs font-bold px-3 py-1">
