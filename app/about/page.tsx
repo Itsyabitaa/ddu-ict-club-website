@@ -30,7 +30,7 @@ export default function AboutPage() {
                                 A future where every student at Dire Dawa University has the opportunity to realize their full potential through technology and entrepreneurship.
                             </p>
                         </div>
-                        
+
                     </div>
                 </div>
             </section>
@@ -46,8 +46,8 @@ export default function AboutPage() {
                     </div>
 
                     <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                        {team.map((member) => (
-                            <TeamCard key={member.id} member={member} />
+                        {team.map((member, i) => (
+                            <TeamCard key={member.id} member={member} index={i} />
                         ))}
                     </div>
                 </div>
