@@ -9,16 +9,16 @@ interface TestimonialProps {
 
 export function TestimonialCard({ quote, author, role }: TestimonialProps) {
     return (
-        <Card className="h-full rounded-none border-black dark:border-white  bg-white dark:bg-black text-white">
-            <CardContent className="pt-6 relative">
-                <Quote className="absolute top-4 left-4 h-8 w-8 text-black/20 dark:text-white/20 rotate-180" />
-                <p className="relative z-10 pl-6 text-lg italic leading-relaxed  text-black dark:text-muted-foreground">
+        <Card className="h-full rounded-none border-2 border-white/10 glass-premium card-glow-premium transition-all duration-700 hover:glow-md">
+            <CardContent className="pt-10 relative">
+                <Quote className="absolute top-4 left-4 h-10 w-10 text-foreground/10 rotate-180" />
+                <p className="relative z-10 pl-4 text-xl font-medium leading-relaxed text-foreground italic">
                     &quot;{quote}&quot;
                 </p>
             </CardContent>
-            <CardFooter className="flex flex-col items-start border-t border-white/10 pt-4">
-                <span className="font-bold text-primary">{author}</span>
-                <span className="text-sm text-muted-foreground uppercase tracking-wider">{role}</span>
+            <CardFooter className="flex flex-col items-start border-t-2 border-border pt-6 pb-8">
+                <span className="font-black text-foreground uppercase tracking-wider">{author}</span>
+                <span className="text-xs text-muted-foreground uppercase tracking-[0.2em] mt-1">{role}</span>
             </CardFooter>
         </Card>
     );
