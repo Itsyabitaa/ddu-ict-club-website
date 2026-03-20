@@ -24,7 +24,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         "slug": slug.current,
         title,
         excerpt,
-        "content": body,
+        "content": pt::text(body),
         "date": publishedAt,
         "category": categories[0]->title,
         readTime,
