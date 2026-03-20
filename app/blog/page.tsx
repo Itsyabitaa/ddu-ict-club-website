@@ -6,11 +6,20 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { PostCard } from "@/components/PostCard";
-import blogData from "@/data/blog.json";
+import { client } from "@/sanity/lib/client";
 import { BlogPost } from "@/lib/types";
 
-export default function BlogPage() {
-    const posts = blogData as BlogPost[];
+export default async function BlogPage() {
+    const posts: BlogPost[] = await client.fetch(`*[_type == "post"] | order(publishedAt desc) {
+        "slug": slug.current,
+        title,
+        excerpt,
+        "content": body,
+        "date": publishedAt,
+        "category": categories[0]->title,
+        readTime,
+        "heroImage": mainImage.asset->url
+    }`);
     // Assume first post is featured (or use logic)
     const featuredPost = posts[0];
     const otherPosts = posts.slice(1);
