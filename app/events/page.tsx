@@ -8,10 +8,10 @@ export default function EventsPage() {
     const events = eventsData as EventItem[];
 
     // Calculate stats and pre-filter events
-    const upcomingAndOngoingEvents = events.filter(e => e.status !== "completed");
-    const completedEvents = events.filter(e => e.status === "completed");
+    const activeEvents = events.filter(e => e.status !== "completed");
+    const pastEvents = events.filter(e => e.status === "completed");
 
-    const passedCount = completedEvents.length;
+    const passedCount = pastEvents.length;
     const ongoingCount = events.filter((e) => e.status === "ongoing").length;
     const upcomingCount = events.filter((e) => e.status === "upcoming").length;
 
@@ -79,10 +79,10 @@ export default function EventsPage() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {upcomingAndOngoingEvents.map(event => (
+                        {activeEvents.map(event => (
                                 <EventCard key={event.id} event={event} />
                             ))}
-                        {upcomingAndOngoingEvents.length === 0 && (
+                        {activeEvents.length === 0 && (
                             <div className="col-span-full py-12 text-center border-2 border-dashed border-border">
                                 <p className="text-muted-foreground font-medium italic">No upcoming events at the moment. Check back later!</p>
                             </div>
@@ -103,10 +103,10 @@ export default function EventsPage() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 opacity-80 hover:opacity-100 transition-opacity duration-500">
-                        {completedEvents.map(event => (
+                        {pastEvents.map(event => (
                                 <EventCard key={event.id} event={event} />
                             ))}
-                        {completedEvents.length === 0 && (
+                        {pastEvents.length === 0 && (
                             <div className="col-span-full text-center">
                                 <p className="text-muted-foreground">No passed events found.</p>
                             </div>
