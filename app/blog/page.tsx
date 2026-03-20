@@ -9,6 +9,8 @@ import { PostCard } from "@/components/PostCard";
 import { client } from "@/sanity/lib/client";
 import { BlogPost } from "@/lib/types";
 
+export const dynamic = 'force-dynamic';
+
 export default async function BlogPage({ searchParams }: { searchParams: Promise<{ category?: string }> }) {
     const resolvedParams = await searchParams;
     const currentCategory = resolvedParams.category || "All";
