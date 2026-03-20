@@ -4,7 +4,7 @@ import { ArrowLeft, Calendar, Clock, MapPin } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import eventsData from "@/data/events.json";
+import { client } from "@/sanity/lib/client";
 import { EventItem } from "@/lib/types";
 
 interface EventPageProps {
@@ -14,14 +14,23 @@ interface EventPageProps {
 }
 
 export async function generateStaticParams() {
-    return eventsData.map((event) => ({
-        id: event.id,
-    }));
+    const events: { id: string }[] = await client.fetch(`*[_type == "event"]{ "id": _id }`);
+    return events.map((e) => ({ id: e.id }));
 }
 
 export default async function EventPage({ params }: EventPageProps) {
     const { id } = await params;
-    const event = (eventsData as EventItem[]).find((e) => e.id === id);
+    const event: EventItem | null = await client.fetch(`*[_type == "event" && _id == $id][0] {
+        "id": _id,
+        title,
+        description,
+        dateLabel,
+        timeLabel,
+        status,
+        recurrence,
+        isMega,
+        "heroImage": heroImage.asset->url
+    }`, { id });
 
     if (!event) {
         notFound();
