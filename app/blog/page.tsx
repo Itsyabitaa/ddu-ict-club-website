@@ -23,7 +23,7 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
         "slug": slug.current,
         title,
         excerpt,
-        "content": body,
+        "content": pt::text(body),
         "date": publishedAt,
         "category": categories[0]->title,
         readTime,
