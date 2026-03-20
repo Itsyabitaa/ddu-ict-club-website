@@ -25,6 +25,9 @@ export default async function Home() {
       "heroImage": heroImage.asset->url
   }`);
 
+  const siteSettings = await client.fetch(`*[_type == "siteSettings"][0] { memberCount, eventCount, projectCount }`);
+  const testimonials = await client.fetch(`*[_type == "testimonial"] | order(_createdAt asc) [0...3] { "id": _id, quote, author, role }`);
+
   return (
     <main className="relative min-h-screen bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
       {/* Persistent Animated Background */}
@@ -130,17 +133,17 @@ export default async function Home() {
 
               <div className="space-y-3 z-10 mt-8">
                 <span className="text-xs font-black uppercase tracking-[0.3em] text-muted-foreground group-hover:text-foreground transition-colors">Members</span>
-                <div className="text-5xl font-black tracking-tighter group-hover:text-primary transition-colors">500+</div>
+                <div className="text-5xl font-black tracking-tighter group-hover:text-primary transition-colors">{siteSettings?.memberCount || "500+"}</div>
               </div>
               <div className="h-[1px] bg-border w-full opacity-50 z-10" />
               <div className="space-y-3 z-10">
                 <span className="text-xs font-black uppercase tracking-[0.3em] text-muted-foreground group-hover:text-foreground transition-colors">Events</span>
-                <div className="text-5xl font-black tracking-tighter group-hover:text-primary transition-colors">20+</div>
+                <div className="text-5xl font-black tracking-tighter group-hover:text-primary transition-colors">{siteSettings?.eventCount || "20+"}</div>
               </div>
               <div className="h-[1px] bg-border w-full opacity-50 z-10" />
               <div className="space-y-3 z-10">
                 <span className="text-xs font-black uppercase tracking-[0.3em] text-muted-foreground group-hover:text-foreground transition-colors">Projects</span>
-                <div className="text-5xl font-black tracking-tighter group-hover:text-primary transition-colors">15</div>
+                <div className="text-5xl font-black tracking-tighter group-hover:text-primary transition-colors">{siteSettings?.projectCount || "15"}</div>
               </div>
                {/* Bottom border accent */}
               <div className="absolute bottom-0 left-0 w-full h-0 opacity-0 group-hover:h-1 group-hover:opacity-100 bg-primary transition-all duration-300 ease-out" />
@@ -190,21 +193,29 @@ export default async function Home() {
         </div>
 
         <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <TestimonialCard
-            quote="The DDU ICT Club changed my life. I went from knowing nothing to building full-stack apps."
-            author="Abebe K."
-            role="Software Engineering"
-          />
-          <TestimonialCard
-            quote="A place where innovation meets passion. The mentorship here is unmatched."
-            author="Sara M."
-            role="Club Vice President"
-          />
-          <TestimonialCard
-            quote="The hackathons are intense but incredibly rewarding. Best community on campus!"
-            author="Dawit T."
-            role="3rd Year CS"
-          />
+          {testimonials && testimonials.length > 0 ? (
+            testimonials.map((t: any) => (
+              <TestimonialCard key={t.id} quote={t.quote} author={t.author} role={t.role} />
+            ))
+          ) : (
+            <>
+              <TestimonialCard
+                quote="The DDU ICT Club changed my life. I went from knowing nothing to building full-stack apps."
+                author="Abebe K."
+                role="Software Engineering"
+              />
+              <TestimonialCard
+                quote="A place where innovation meets passion. The mentorship here is unmatched."
+                author="Sara M."
+                role="Club Vice President"
+              />
+              <TestimonialCard
+                quote="The hackathons are intense but incredibly rewarding. Best community on campus!"
+                author="Dawit T."
+                role="3rd Year CS"
+              />
+            </>
+          )}
         </div>
       </section>
     </main>
