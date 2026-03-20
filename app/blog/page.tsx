@@ -126,18 +126,19 @@ export default function BlogPage() {
                 </div>
 
                 {/* Newsletter / CTA - The "Ending" content to avoid emptiness */}
-                <div className="mt-32 p-12 border-4 border-foreground bg-foreground text-background flex flex-col md:flex-row items-center justify-between gap-12 group transition-all duration-500 hover:glow-md">
+                <form className="mt-32 p-12 border-4 border-foreground bg-foreground text-background flex flex-col md:flex-row items-center justify-between gap-12 group transition-all duration-500 hover:glow-md">
                     <div className="max-w-xl">
                         <h3 className="text-4xl font-black uppercase tracking-tighter mb-4">Stay in the loop</h3>
                         <p className="text-lg font-medium opacity-80">Get the latest tutorials, event news, and tech insights delivered straight to your inbox.</p>
                     </div>
                     <div className="flex w-full md:w-auto gap-4">
-                        <Input placeholder="YOUR EMAIL" className="rounded-none border-2 border-background bg-transparent text-background placeholder:text-background/50 h-14 min-w-[300px]" />
-                        <Button variant="outline" size="lg" className="rounded-none border-2 border-background bg-background text-foreground hover:bg-transparent hover:text-background h-14 px-10 font-black uppercase transition-all">
+                        <label htmlFor="newsletter-email" className="sr-only">Your Email</label>
+                        <Input id="newsletter-email" name="email" type="email" placeholder="YOUR EMAIL" className="rounded-none border-2 border-background bg-transparent text-background placeholder:text-background/50 h-14 min-w-[300px]" />
+                        <Button type="submit" variant="outline" size="lg" className="rounded-none border-2 border-background bg-background text-foreground hover:bg-transparent hover:text-background h-14 px-10 font-black uppercase transition-all">
                             Join Now
                         </Button>
                     </div>
-                </div>
+                </form>
             </div>
         </section>
     </main>
