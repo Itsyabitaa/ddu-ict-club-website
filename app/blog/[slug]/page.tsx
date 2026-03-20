@@ -4,7 +4,7 @@ import { ArrowLeft, Calendar, User } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import blogData from "@/data/blog.json";
+import { client } from "@/sanity/lib/client";
 import { BlogPost } from "@/lib/types";
 
 interface BlogPostPageProps {
@@ -14,14 +14,22 @@ interface BlogPostPageProps {
 }
 
 export async function generateStaticParams() {
-    return blogData.map((post) => ({
-        slug: post.slug,
-    }));
+    const slugs: { slug: string }[] = await client.fetch(`*[_type == "post"]{ "slug": slug.current }`);
+    return slugs.map((s) => ({ slug: s.slug }));
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
     const { slug } = await params;
-    const post = (blogData as BlogPost[]).find((p) => p.slug === slug);
+    const post: BlogPost | null = await client.fetch(`*[_type == "post" && slug.current == $slug][0] {
+        "slug": slug.current,
+        title,
+        excerpt,
+        "content": body,
+        "date": publishedAt,
+        "category": categories[0]->title,
+        readTime,
+        "heroImage": mainImage.asset->url
+    }`, { slug });
 
     if (!post) {
         notFound();
