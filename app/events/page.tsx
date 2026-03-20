@@ -107,7 +107,9 @@ export default function EventsPage() {
                                 <EventCard key={event.id} event={event} />
                             ))}
                         {completedEvents.length === 0 && (
-                            <p className="text-muted-foreground">No passed events found.</p>
+                            <div className="col-span-full text-center">
+                                <p className="text-muted-foreground">No passed events found.</p>
+                            </div>
                         )}
                     </div>
                 </div>
