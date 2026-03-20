@@ -1,11 +1,21 @@
 import { EventCard } from "@/components/EventCard";
 import { StatBlock } from "@/components/StatBlock";
-import eventsData from "@/data/events.json";
+import { client } from "@/sanity/lib/client";
 import { EventItem } from "@/lib/types";
 import { History, PlayCircle, CalendarClock } from "lucide-react";
 
-export default function EventsPage() {
-    const events = eventsData as EventItem[];
+export default async function EventsPage() {
+    const events: EventItem[] = await client.fetch(`*[_type == "event"] | order(_createdAt desc) {
+      "id": _id,
+      title,
+      description,
+      dateLabel,
+      timeLabel,
+      status,
+      recurrence,
+      isMega,
+      "heroImage": heroImage.asset->url
+    }`);
 
     // Calculate stats and pre-filter events
     const activeEvents = events.filter(e => e.status !== "completed");

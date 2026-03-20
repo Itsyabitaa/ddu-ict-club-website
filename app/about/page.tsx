@@ -1,10 +1,17 @@
 import { TeamCard } from "@/components/TeamCard";
-import teamData from "@/data/team.json";
+import { client } from "@/sanity/lib/client";
 import { TeamMember } from "@/lib/types";
 import { Rocket, Target } from "lucide-react";
 
-export default function AboutPage() {
-    const team = teamData as TeamMember[];
+export default async function AboutPage() {
+    const team: TeamMember[] = await client.fetch(`*[_type == "teamMember"] | order(_createdAt asc) {
+      "id": _id,
+      name,
+      role,
+      "image": image.asset->url,
+      bio,
+      socials
+    }`);
 
     return (
         <main className="flex min-h-screen flex-col bg-background text-foreground">

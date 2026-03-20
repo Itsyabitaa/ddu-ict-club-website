@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Github, Linkedin, Twitter } from "lucide-react";
 import { TeamMember } from "@/lib/types";
 
@@ -56,7 +57,7 @@ export function TeamCard({ member, index = 0 }: TeamCardProps) {
                 <div className="absolute inset-0 flex items-center justify-center">
                     <div className="
                         relative
-                        w-24 h-24
+                        w-40 h-40
                         border-2 border-border
                         group-hover:border-primary
                         bg-background
@@ -65,9 +66,18 @@ export function TeamCard({ member, index = 0 }: TeamCardProps) {
                         group-hover:scale-110
                         group-hover:shadow-[4px_4px_0_hsl(var(--primary))]
                     ">
-                        <span className="text-4xl font-black tracking-tight text-foreground select-none group-hover:text-primary transition-colors duration-300">
-                            {initial}
-                        </span>
+                        {member.image ? (
+                            <Image 
+                                src={member.image} 
+                                alt={`Profile picture of ${member.name}`}
+                                fill
+                                className="object-cover"
+                            />
+                        ) : (
+                            <span className="text-4xl font-black tracking-tight text-foreground select-none group-hover:text-primary transition-colors duration-300">
+                                {initial}
+                            </span>
+                        )}
 
                         {/* corner tick mark */}
                         <span className="

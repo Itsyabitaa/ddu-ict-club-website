@@ -6,11 +6,32 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { PostCard } from "@/components/PostCard";
-import blogData from "@/data/blog.json";
+import { client } from "@/sanity/lib/client";
 import { BlogPost } from "@/lib/types";
 
-export default function BlogPage() {
-    const posts = blogData as BlogPost[];
+export const dynamic = 'force-dynamic';
+
+export default async function BlogPage({ searchParams }: { searchParams: { category?: string } }) {
+    const currentCategory = searchParams.category || "All";
+
+    const fetchQuery = currentCategory === "All"
+        ? `*[_type == "post"] | order(publishedAt desc)`
+        : `*[_type == "post" && references(*[_type == "category" && title == $category]._id)] | order(publishedAt desc)`;
+
+    const posts: BlogPost[] = await client.fetch(fetchQuery + ` {
+        "slug": slug.current,
+        title,
+        excerpt,
+        "content": body,
+        "date": publishedAt,
+        "category": categories[0]->title,
+        readTime,
+        "heroImage": mainImage.asset->url
+    }`, { category: currentCategory });
+    
+    // Fetch unique categories from Sanity DB
+    const fetchedCategories: string[] = await client.fetch(`*[_type == "category"].title`);
+    const allCategories = ["All", ...fetchedCategories];
     // Assume first post is featured (or use logic)
     const featuredPost = posts[0];
     const otherPosts = posts.slice(1);
@@ -50,10 +71,12 @@ export default function BlogPage() {
             
             <div className="container mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between gap-6">
                 <div className="flex flex-wrap items-center justify-center gap-2">
-                    {["All", "Tutorials", "Events", "Career", "Tech Talks"].map((cat) => (
-                        <Button key={cat} variant={cat === "All" ? "default" : "outline"} className="group relative overflow-hidden rounded-none border-2 border-border text-xs font-black uppercase tracking-widest h-10 px-6 transition-all hover:border-foreground hover:glow-sm active:scale-95">
-                            <span className="relative z-10">{cat}</span>
-                            <div className="absolute inset-0 bg-foreground/5 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                    {allCategories.map((cat) => (
+                        <Button key={cat} asChild variant={cat === currentCategory ? "default" : "outline"} className="group relative overflow-hidden rounded-none border-2 border-border text-xs font-black uppercase tracking-widest h-10 px-6 transition-all hover:border-foreground hover:glow-sm active:scale-95">
+                            <Link href={cat === "All" ? "/blog" : `/blog?category=${encodeURIComponent(cat)}`}>
+                                <span className="relative z-10">{cat}</span>
+                                <div className="absolute inset-0 bg-foreground/5 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                            </Link>
                         </Button>
                     ))}
                 </div>
