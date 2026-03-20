@@ -11,9 +11,15 @@ export default function EventsPage() {
     const activeEvents = events.filter(e => e.status !== "completed");
     const pastEvents = events.filter(e => e.status === "completed");
 
-    const passedCount = pastEvents.length;
-    const ongoingCount = events.filter((e) => e.status === "ongoing").length;
-    const upcomingCount = events.filter((e) => e.status === "upcoming").length;
+    const { passedCount, ongoingCount, upcomingCount } = events.reduce(
+        (acc, e) => {
+            if (e.status === "completed") acc.passedCount += 1;
+            if (e.status === "ongoing") acc.ongoingCount += 1;
+            if (e.status === "upcoming") acc.upcomingCount += 1;
+            return acc;
+        },
+        { passedCount: 0, ongoingCount: 0, upcomingCount: 0 }
+    );
 
     return (
         <main className="flex min-h-screen flex-col bg-background text-foreground">
