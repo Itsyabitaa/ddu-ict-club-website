@@ -107,7 +107,7 @@ export default async function Home() {
                     {megaItem.type === 'event' ? (megaItem as EventItem).description : (megaItem as any).excerpt}
                   </p>
                   <div className="pt-6 border-t border-border flex items-center justify-between">
-                    <Link href={megaItem.type === 'event' ? `/events/${(megaItem as EventItem).id}` : `/blog/${(megaItem as any).slug}`} className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-widest text-foreground hover:text-primary transition-all duration-300">
+                    <Link href={megaItem.type === 'event' ? `/events` : `/blog/${(megaItem as any).slug}`} className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-widest text-foreground hover:text-primary transition-all duration-300">
                       Full Story <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                     </Link>
                     <span className="text-muted-foreground/30 text-sm font-mono select-none group-hover:text-primary/50 transition-colors">↗</span>
@@ -115,9 +115,15 @@ export default async function Home() {
                 </div>
               ) : (
                 <div className="relative z-10 flex flex-col justify-end h-full">
-                  <Terminal className="h-32 w-32 text-foreground mb-6 opacity-10" />
-                  <h2 className="text-5xl font-black tracking-tighter mb-4">DDU ICT Club</h2>
-                  <p className="text-xl text-muted-foreground">Shaping the tech landscape of tomorrow.</p>
+                  <Terminal className="h-32 w-32 text-foreground mb-6 opacity-10 group-hover:text-primary group-hover:opacity-20 transition-all duration-500" />
+                  <h2 className="text-5xl font-black tracking-tighter mb-4 group-hover:text-primary transition-colors">DDU ICT Events</h2>
+                  <p className="text-xl text-muted-foreground mb-8">Discover what we are building and hosting today.</p>
+                  <div className="pt-6 border-t border-border flex items-center justify-between">
+                    <Link href="/events" className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-widest text-foreground hover:text-primary transition-all duration-300">
+                      View All Events <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                    </Link>
+                    <span className="text-muted-foreground/30 text-sm font-mono select-none group-hover:text-primary/50 transition-colors">↗</span>
+                  </div>
                 </div>
               )}
               {/* Bottom border accent */}
