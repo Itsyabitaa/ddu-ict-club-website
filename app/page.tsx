@@ -82,14 +82,14 @@ export default async function Home() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {/* Mega Item Cell (Span 2) */}
-            <div className="md:col-span-2 bg-background border-2 border-border p-10 md:p-16 relative overflow-hidden group min-h-[450px] flex flex-col justify-end transition-all duration-500 ease-out hover:-translate-y-2 hover:border-primary hover:shadow-[10px_10px_0px_0px_hsl(var(--primary))]">
+            <div className="md:col-span-2 bg-background border-2 border-border p-8 md:p-10 relative overflow-hidden group min-h-[350px] flex flex-col justify-end transition-all duration-500 ease-out hover:-translate-y-2 hover:border-primary hover:shadow-[10px_10px_0px_0px_hsl(var(--primary))]">
               <div className="absolute top-6 left-6 z-10">
                 <Badge variant="default" className="rounded-none uppercase tracking-widest text-[10px] font-black px-3 py-1 shadow-[3px_3px_0px_0px_rgba(0,0,0,0.2)]">Featured</Badge>
               </div>
               {megaItem ? (
                 <div className="relative z-10 max-w-xl pr-6">
                   <div className="h-[2px] w-8 bg-primary transition-all duration-500 ease-out group-hover:w-full mb-6" />
-                  <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6 group-hover:text-primary transition-colors duration-300">
+                  <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-6 group-hover:text-primary transition-colors duration-300">
                     {megaItem.title}
                   </h2>
                   <p className="text-xl text-muted-foreground mb-8 line-clamp-3 leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
@@ -114,7 +114,7 @@ export default async function Home() {
             </div>
 
             {/* Stats Cell */}
-            <div className="bg-background border-2 border-border p-10 flex flex-col justify-center space-y-12 transition-all duration-500 ease-out hover:-translate-y-2 hover:border-primary hover:shadow-[10px_10px_0px_0px_hsl(var(--primary))] group relative overflow-hidden">
+            <div className="bg-background border-2 border-border p-8 flex flex-col justify-center space-y-8 transition-all duration-500 ease-out hover:-translate-y-2 hover:border-primary hover:shadow-[10px_10px_0px_0px_hsl(var(--primary))] group relative overflow-hidden">
                <div className="absolute top-6 right-6 z-10">
                 <Badge variant="default" className="rounded-none uppercase tracking-widest text-[10px] font-black px-3 py-1 shadow-[3px_3px_0px_0px_rgba(0,0,0,0.2)]">Stats</Badge>
               </div>
@@ -122,17 +122,17 @@ export default async function Home() {
 
               <div className="space-y-3 z-10 mt-8">
                 <span className="text-xs font-black uppercase tracking-[0.3em] text-muted-foreground group-hover:text-foreground transition-colors">Members</span>
-                <div className="text-6xl font-black tracking-tighter group-hover:text-primary transition-colors">500+</div>
+                <div className="text-5xl font-black tracking-tighter group-hover:text-primary transition-colors">500+</div>
               </div>
               <div className="h-[1px] bg-border w-full opacity-50 z-10" />
               <div className="space-y-3 z-10">
                 <span className="text-xs font-black uppercase tracking-[0.3em] text-muted-foreground group-hover:text-foreground transition-colors">Events</span>
-                <div className="text-6xl font-black tracking-tighter group-hover:text-primary transition-colors">20+</div>
+                <div className="text-5xl font-black tracking-tighter group-hover:text-primary transition-colors">20+</div>
               </div>
               <div className="h-[1px] bg-border w-full opacity-50 z-10" />
               <div className="space-y-3 z-10">
                 <span className="text-xs font-black uppercase tracking-[0.3em] text-muted-foreground group-hover:text-foreground transition-colors">Projects</span>
-                <div className="text-6xl font-black tracking-tighter group-hover:text-primary transition-colors">15</div>
+                <div className="text-5xl font-black tracking-tighter group-hover:text-primary transition-colors">15</div>
               </div>
                {/* Bottom border accent */}
               <div className="absolute bottom-0 left-0 w-full h-0 opacity-0 group-hover:h-1 group-hover:opacity-100 bg-primary transition-all duration-300 ease-out" />
