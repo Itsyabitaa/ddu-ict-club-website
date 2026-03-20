@@ -71,8 +71,8 @@ export default function BlogPage() {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-1 bg-border border-4 border-border glass-premium card-glow-premium">
                         <div className="relative aspect-video lg:aspect-auto w-full border-r-4 border-border bg-muted/20 overflow-hidden group">
                            <Image 
-                                src="/assets/blog/featured-abstract.png" 
-                                alt="Featured Post Visual" 
+                                src={featuredPost.heroImage || "/assets/blog/featured-abstract.png"} 
+                                alt={`Featured image for post: ${featuredPost.title}`} 
                                 fill 
                                 className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100 grayscale"
                            />
@@ -109,7 +109,7 @@ export default function BlogPage() {
             <div className="container mx-auto px-4 pb-32 overflow-y-auto max-h-[85vh] custom-scrollbar">
                 <div className="mb-12 border-b-2 border-border pb-4 flex items-center justify-between">
                     <h2 className="text-4xl font-black uppercase tracking-tighter">Latest Stories</h2>
-                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">{otherPosts.length} Articles</span>
+                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">{otherPosts.length * 2} Articles</span>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                     {otherPosts.map((post) => (
