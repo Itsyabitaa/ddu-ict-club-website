@@ -80,25 +80,27 @@ export default async function Home() {
       {/* Bento Grid Section - Stack 2 */}
       <section className="stack-section z-[20] shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-1 bg-border border-2 border-border glow-sm transition-all hover:glow-md glass-premium">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {/* Mega Item Cell (Span 2) */}
-            <div className="md:col-span-2 bg-background/10 p-10 md:p-16 relative overflow-hidden group min-h-[450px] flex flex-col justify-end border-r-2 border-border">
-              <div className="absolute top-8 left-8 z-10">
-                <Badge variant="outline" className="rounded-none px-4 py-1 text-xs font-black uppercase tracking-widest border-2 border-foreground bg-foreground text-background">Featured</Badge>
+            <div className="md:col-span-2 bg-background border-2 border-border p-10 md:p-16 relative overflow-hidden group min-h-[450px] flex flex-col justify-end transition-all duration-500 ease-out hover:-translate-y-2 hover:border-primary hover:shadow-[10px_10px_0px_0px_hsl(var(--primary))]">
+              <div className="absolute top-6 left-6 z-10">
+                <Badge variant="default" className="rounded-none uppercase tracking-widest text-[10px] font-black px-3 py-1 shadow-[3px_3px_0px_0px_rgba(0,0,0,0.2)]">Featured</Badge>
               </div>
               {megaItem ? (
-                <div className="relative z-10 max-w-xl">
-                  <h2 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 group-hover:translate-x-2 transition-transform duration-500">
+                <div className="relative z-10 max-w-xl pr-6">
+                  <div className="h-[2px] w-8 bg-primary transition-all duration-500 ease-out group-hover:w-full mb-6" />
+                  <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6 group-hover:text-primary transition-colors duration-300">
                     {megaItem.title}
                   </h2>
-                  <p className="text-xl text-muted-foreground mb-8 line-clamp-2 leading-relaxed">
+                  <p className="text-xl text-muted-foreground mb-8 line-clamp-3 leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
                     {megaItem.type === 'event' ? (megaItem as EventItem).description : (megaItem as any).excerpt}
                   </p>
-                  <Button asChild variant="link" className="p-0 text-foreground text-xl group-hover:translate-x-4 transition-transform h-auto font-black uppercase">
-                    <Link href={megaItem.type === 'event' ? `/events/${(megaItem as EventItem).id}` : `/blog/${(megaItem as any).slug}`}>
-                      Full Story <ArrowRight className="ml-3 h-6 w-6" />
+                  <div className="pt-6 border-t border-border flex items-center justify-between">
+                    <Link href={megaItem.type === 'event' ? `/events/${(megaItem as EventItem).id}` : `/blog/${(megaItem as any).slug}`} className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-widest text-foreground hover:text-primary transition-all duration-300">
+                      Full Story <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                     </Link>
-                  </Button>
+                    <span className="text-muted-foreground/30 text-sm font-mono select-none group-hover:text-primary/50 transition-colors">↗</span>
+                  </div>
                 </div>
               ) : (
                 <div className="relative z-10 flex flex-col justify-end h-full">
@@ -107,24 +109,33 @@ export default async function Home() {
                   <p className="text-xl text-muted-foreground">Shaping the tech landscape of tomorrow.</p>
                 </div>
               )}
+              {/* Bottom border accent */}
+              <div className="absolute bottom-0 left-0 w-full h-0 opacity-0 group-hover:h-1 group-hover:opacity-100 bg-primary transition-all duration-300 ease-out" />
             </div>
 
             {/* Stats Cell */}
-            <div className="bg-background/10 p-10 flex flex-col justify-center space-y-12">
-              <div className="space-y-3">
-                <span className="text-xs font-black uppercase tracking-[0.3em] text-muted-foreground">Members</span>
-                <div className="text-6xl font-black tracking-tighter">500+</div>
+            <div className="bg-background border-2 border-border p-10 flex flex-col justify-center space-y-12 transition-all duration-500 ease-out hover:-translate-y-2 hover:border-primary hover:shadow-[10px_10px_0px_0px_hsl(var(--primary))] group relative overflow-hidden">
+               <div className="absolute top-6 right-6 z-10">
+                <Badge variant="default" className="rounded-none uppercase tracking-widest text-[10px] font-black px-3 py-1 shadow-[3px_3px_0px_0px_rgba(0,0,0,0.2)]">Stats</Badge>
               </div>
-              <div className="h-[2px] bg-border w-full opacity-50" />
-              <div className="space-y-3">
-                <span className="text-xs font-black uppercase tracking-[0.3em] text-muted-foreground">Events</span>
-                <div className="text-6xl font-black tracking-tighter">20+</div>
+              <div className="h-[2px] w-8 bg-primary transition-all duration-500 ease-out group-hover:w-full absolute top-[80px] left-10" />
+
+              <div className="space-y-3 z-10 mt-8">
+                <span className="text-xs font-black uppercase tracking-[0.3em] text-muted-foreground group-hover:text-foreground transition-colors">Members</span>
+                <div className="text-6xl font-black tracking-tighter group-hover:text-primary transition-colors">500+</div>
               </div>
-              <div className="h-[2px] bg-border w-full opacity-50" />
-              <div className="space-y-3">
-                <span className="text-xs font-black uppercase tracking-[0.3em] text-muted-foreground">Projects</span>
-                <div className="text-6xl font-black tracking-tighter">15</div>
+              <div className="h-[1px] bg-border w-full opacity-50 z-10" />
+              <div className="space-y-3 z-10">
+                <span className="text-xs font-black uppercase tracking-[0.3em] text-muted-foreground group-hover:text-foreground transition-colors">Events</span>
+                <div className="text-6xl font-black tracking-tighter group-hover:text-primary transition-colors">20+</div>
               </div>
+              <div className="h-[1px] bg-border w-full opacity-50 z-10" />
+              <div className="space-y-3 z-10">
+                <span className="text-xs font-black uppercase tracking-[0.3em] text-muted-foreground group-hover:text-foreground transition-colors">Projects</span>
+                <div className="text-6xl font-black tracking-tighter group-hover:text-primary transition-colors">15</div>
+              </div>
+               {/* Bottom border accent */}
+              <div className="absolute bottom-0 left-0 w-full h-0 opacity-0 group-hover:h-1 group-hover:opacity-100 bg-primary transition-all duration-300 ease-out" />
             </div>
           </div>
         </div>
