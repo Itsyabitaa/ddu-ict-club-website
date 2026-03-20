@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Search } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -69,12 +70,15 @@ export default function BlogPage() {
                 <div className="container mx-auto px-4">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-1 bg-border border-4 border-border glass-premium card-glow-premium">
                         <div className="relative aspect-video lg:aspect-auto w-full border-r-4 border-border bg-muted/20 overflow-hidden group">
-                           <div className="absolute inset-0 bg-neutral-900 flex items-center justify-center">
-                                <span className="text-muted-foreground text-xs font-black uppercase tracking-widest opacity-30">Featured Visual</span>
-                           </div>
-                           <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-8 lg:p-12">
+                           <Image 
+                                src={featuredPost.heroImage || "/assets/blog/featured-abstract.png"} 
+                                alt={`Featured image for post: ${featuredPost.title}`} 
+                                fill 
+                                className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100 grayscale"
+                           />
+                           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end p-8 lg:p-12">
                                 <Badge className="w-fit mb-4 rounded-none bg-foreground text-background font-black uppercase tracking-widest px-4 py-1">{featuredPost.category}</Badge>
-                                <h2 className="text-3xl md:text-5xl font-black tracking-tighter text-white leading-tight uppercase line-clamp-2">
+                                <h2 className="text-3xl md:text-5xl font-black tracking-tighter text-white leading-tight uppercase line-clamp-2 group-hover:translate-x-2 transition-transform">
                                     {featuredPost.title}
                                 </h2>
                            </div>
@@ -101,8 +105,12 @@ export default function BlogPage() {
         )}
 
         {/* Regular Posts Grid - Stack 3 */}
-        <section className="stack-section z-[30] shadow-[0_-20px_50px_rgba(0,0,0,0.5)] bg-background/95">
-            <div className="container mx-auto px-4 py-20 overflow-y-auto max-h-screen custom-scrollbar">
+        <section className="stack-section z-[30] shadow-[0_-20px_50px_rgba(0,0,0,0.5)] bg-background/95 justify-start pt-32">
+            <div className="container mx-auto px-4 pb-32 overflow-y-auto max-h-[85vh] custom-scrollbar">
+                <div className="mb-12 border-b-2 border-border pb-4 flex items-center justify-between">
+                    <h2 className="text-4xl font-black uppercase tracking-tighter">Latest Stories</h2>
+                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">{otherPosts.length * 2} Articles</span>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                     {otherPosts.map((post) => (
                         <div key={post.slug} className="transition-all duration-500 hover:-translate-y-2">
@@ -116,6 +124,21 @@ export default function BlogPage() {
                         </div>
                     ))}
                 </div>
+
+                {/* Newsletter / CTA - The "Ending" content to avoid emptiness */}
+                <form className="mt-32 p-12 border-4 border-foreground bg-foreground text-background flex flex-col md:flex-row items-center justify-between gap-12 group transition-all duration-500 hover:glow-md">
+                    <div className="max-w-xl">
+                        <h3 className="text-4xl font-black uppercase tracking-tighter mb-4">Stay in the loop</h3>
+                        <p className="text-lg font-medium opacity-80">Get the latest tutorials, event news, and tech insights delivered straight to your inbox.</p>
+                    </div>
+                    <div className="flex w-full md:w-auto gap-4">
+                        <label htmlFor="newsletter-email" className="sr-only">Your Email</label>
+                        <Input id="newsletter-email" name="email" type="email" placeholder="YOUR EMAIL" className="rounded-none border-2 border-background bg-transparent text-background placeholder:text-background/50 h-14 min-w-[300px]" />
+                        <Button type="submit" variant="outline" size="lg" className="rounded-none border-2 border-background bg-background text-foreground hover:bg-transparent hover:text-background h-14 px-10 font-black uppercase transition-all">
+                            Join Now
+                        </Button>
+                    </div>
+                </form>
             </div>
         </section>
     </main>
