@@ -190,40 +190,22 @@ export default async function Home() {
       </section>
 
       {/* Community Section - Stack 4 */}
-      <section className="stack-section z-[40] shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
-        <div className="container mx-auto px-4 text-center mb-20">
-          <h2 className="text-5xl font-black uppercase tracking-tighter sm:text-7xl mb-6">Community</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-medium leading-relaxed font-sans">
-            Hear from the students, developers, and leaders who make our community thrive.
-          </p>
-        </div>
+      {testimonials && testimonials.length > 0 && (
+        <section className="stack-section z-[40] shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
+          <div className="container mx-auto px-4 text-center mb-20">
+            <h2 className="text-5xl font-black uppercase tracking-tighter sm:text-7xl mb-6">Community</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-medium leading-relaxed font-sans">
+              Hear from the students, developers, and leaders who make our community thrive.
+            </p>
+          </div>
 
-        <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials && testimonials.length > 0 ? (
-            testimonials.map((t: any) => (
+          <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+            {testimonials.map((t: any) => (
               <TestimonialCard key={t.id} quote={t.quote} author={t.author} role={t.role} />
-            ))
-          ) : (
-            <>
-              <TestimonialCard
-                quote="The DDU ICT Club changed my life. I went from knowing nothing to building full-stack apps."
-                author="Abebe K."
-                role="Software Engineering"
-              />
-              <TestimonialCard
-                quote="A place where innovation meets passion. The mentorship here is unmatched."
-                author="Sara M."
-                role="Club Vice President"
-              />
-              <TestimonialCard
-                quote="The hackathons are intense but incredibly rewarding. Best community on campus!"
-                author="Dawit T."
-                role="3rd Year CS"
-              />
-            </>
-          )}
-        </div>
-      </section>
+            ))}
+          </div>
+        </section>
+      )}
     </main>
   );
 }
