@@ -11,8 +11,9 @@ import { BlogPost } from "@/lib/types";
 
 export const dynamic = 'force-dynamic';
 
-export default async function BlogPage({ searchParams }: { searchParams: { category?: string } }) {
-    const currentCategory = searchParams.category || "All";
+export default async function BlogPage({ searchParams }: { searchParams: Promise<{ category?: string }> }) {
+    const resolvedParams = await searchParams;
+    const currentCategory = resolvedParams.category || "All";
 
     const fetchQuery = currentCategory === "All"
         ? `*[_type == "post"] | order(publishedAt desc)`
