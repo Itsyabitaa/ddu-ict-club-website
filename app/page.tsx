@@ -7,15 +7,23 @@ import { Badge } from "@/components/ui/badge";
 import { EventCard } from "@/components/EventCard";
  
 import { TestimonialCard } from "@/components/TestimonialCard";
-import eventsData from "@/data/events.json";
+import { client } from "@/sanity/lib/client";
 import { EventItem } from "@/lib/types";
 import { getMegaItem } from "@/lib/mega";
 
 export default async function Home() {
   const megaItem = await getMegaItem();
-  const upcomingEvents = (eventsData as EventItem[])
-    .filter((e) => e.status === "upcoming" || e.status === "ongoing")
-    .slice(0, 3);
+  const upcomingEvents: EventItem[] = await client.fetch(`*[_type == "event" && status in ["upcoming", "ongoing"]] | order(_createdAt asc)[0...3] {
+      "id": _id,
+      title,
+      description,
+      dateLabel,
+      timeLabel,
+      status,
+      recurrence,
+      isMega,
+      "heroImage": heroImage.asset->url
+  }`);
 
   return (
     <main className="relative min-h-screen bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
